@@ -1,5 +1,6 @@
-package jogogourmetobjective;
+package Model;
 
+import Model.Prato;
 import java.util.ArrayList;
 import java.util.List;
 
