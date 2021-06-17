@@ -12,11 +12,7 @@ public class Prato {
         this.nome = nome;
         this.dica = dica;
            }
-
-    public Prato(String bolo_de_Chocolate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+ 
     public String getNome() {
         return nome;
     }
