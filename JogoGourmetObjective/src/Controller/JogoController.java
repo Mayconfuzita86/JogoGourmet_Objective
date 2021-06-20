@@ -13,6 +13,7 @@ public class JogoController {
     private NoModel noAtual;
 
     public JogoController() {
+
         NoModel sim = new NoModel("Lasanha");
         NoModel nao = new NoModel("Bolo de Chocolate");
         raiz = new NoModel(sim, nao, "massa");
@@ -21,20 +22,23 @@ public class JogoController {
     }
 
     public void iniciarJogo() {
+
         percorrerNo(raiz);
     }
-    
-    public void percorrerNo(NoModel no){
+
+    public void percorrerNo(NoModel no) {
+
         noAtual = no;
-        if(perguntarPrato(no.getDescricao())){
+        if (perguntarPrato(no.getDescricao())) {
             validaNoFilhoSim(no.getFilhoSim());
-        }else{
+        } else {
             validaNoFilhoNao(no.getFilhoNao());
         }
     }
 
-    public void validaNoFilhoSim(NoModel noSim){
-        if(noSim == null){
+    public void validaNoFilhoSim(NoModel noSim) {
+
+        if (noSim == null) {
             venceuJogo();
             return;
         }
@@ -42,42 +46,12 @@ public class JogoController {
     }
 
     public void validaNoFilhoNao(NoModel noNao) {
-        if(noNao == null){
+
+        if (noNao == null) {
             perdeuJogo();
             return;
         }
         percorrerNo(noNao);
-    }
-
-    public NoModel criaNovoRamo(String descricaoPrato, String caracteristicaPrato) {
-
-       NoModel noCaracteristica = new NoModel(caracteristicaPrato);
-       NoModel noPrato = new NoModel(descricaoPrato);
-       noCaracteristica.setFilhoSim(noPrato);
-       return noCaracteristica;
-    }
-
-    public void incluirRamificacao(NoModel novoRamo){
-
-        noAtual.setFilhoNao(novoRamo);
-        novoRamo.setPai(noAtual);
-    }
-
-    public void incluirRamificacaoRealocandoFolha(NoModel novoRamo){
-
-        NoModel noAvo = noAtual.getPai();
-        NoModel noPai = novoRamo;
-        NoModel noFilho = noAtual;
-
-        if(verificaSeEhLasanha() && verificaSePaiEhRaiz())
-            noAvo.setFilhoSim(noPai);
-        else
-            noAvo.setFilhoNao(noPai);
-
-        noPai.setPai(noAvo);
-
-        noPai.setFilhoNao(noFilho);
-        noFilho.setPai(noPai);
     }
 
     public void perdeuJogo() {
@@ -87,33 +61,68 @@ public class JogoController {
 
         NoModel novoRamo = criaNovoRamo(novoPrato, caracteristicaPrato);
 
-       if(verificaSeDeveRealocarFolha()){
-           incluirRamificacaoRealocandoFolha(novoRamo);
-           return;
-       }
-       incluirRamificacao(novoRamo);
+        if (verificaSeDeveRealocarFolha()) {
+            incluirRamificacaoRealocandoFolha(novoRamo);
+            return;
+        }
+        incluirRamificacao(novoRamo);
     }
 
-    public boolean verificaSeEhBolo(){
-        if(noAtual.getDescricao().equals(NoModel.FOLHA_PADRAO_NAO)){
+    public NoModel criaNovoRamo(String descricaoPrato, String caracteristicaPrato) {
+
+        NoModel noCaracteristica = new NoModel(caracteristicaPrato);
+        NoModel noPrato = new NoModel(descricaoPrato);
+        noCaracteristica.setFilhoSim(noPrato);
+        return noCaracteristica;
+    }
+
+    public void incluirRamificacao(NoModel novoRamo) {
+
+        noAtual.setFilhoNao(novoRamo);
+        novoRamo.setPai(noAtual);
+    }
+
+    public void incluirRamificacaoRealocandoFolha(NoModel novoRamo) {
+
+        NoModel noAvo = noAtual.getPai();
+        NoModel noPai = novoRamo;
+        NoModel noFilho = noAtual;
+
+        if (verificaSeEhLasanha() && verificaSePaiEhRaiz()) {
+            noAvo.setFilhoSim(noPai);
+        } else {
+            noAvo.setFilhoNao(noPai);
+        }
+
+        noPai.setPai(noAvo);
+
+        noPai.setFilhoNao(noFilho);
+        noFilho.setPai(noPai);
+    }
+
+    public boolean verificaSeEhBolo() {
+
+        if (noAtual.getDescricao().equals(NoModel.FOLHA_PADRAO_NAO)) {
             return true;
         }
         return false;
     }
 
-    public boolean verificaSeEhLasanha(){
-        if(noAtual.getDescricao().equals(NoModel.FOLHA_PADRAO_SIM)){
+    public boolean verificaSeEhLasanha() {
+
+        if (noAtual.getDescricao().equals(NoModel.FOLHA_PADRAO_SIM)) {
             return true;
         }
         return false;
     }
 
-    public boolean verificaSeDeveRealocarFolha(){
+    public boolean verificaSeDeveRealocarFolha() {
+
         return verificaSeEhLasanha() || verificaSeEhBolo();
     }
 
-    public boolean verificaSePaiEhRaiz(){
+    public boolean verificaSePaiEhRaiz() {
+
         return noAtual.getPai().getDescricao().equals(raiz.getDescricao());
     }
-
 }
