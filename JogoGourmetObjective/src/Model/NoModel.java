@@ -6,35 +6,38 @@ package Model;
  */
 public class NoModel {
 
-    private NoModel sim;
-    private NoModel nao;
-    private NoModel superior;
+    private NoModel filhoSim;
+    private NoModel filhoNao;
+    private NoModel pai;
     private String descricao;
+    
+    public static String FOLHA_PADRAO_NAO = "Bolo de Chocolate";
+    public static String FOLHA_PADRAO_SIM = "Lasanha";
 
     public NoModel(String descricao) {
         this.descricao = descricao;
     }
 
     public NoModel(NoModel sim, NoModel nao, String descricao) {
-        this.sim = sim;
-        this.nao = nao;
+        this.filhoSim = sim;
+        this.filhoNao = nao;
         this.descricao = descricao;
     }
 
-    public NoModel getSim() {
-        return sim;
+    public NoModel getFilhoSim() {
+        return filhoSim;
     }
 
-    public void setSim(NoModel sim) {
-        this.sim = sim;
+    public void setFilhoSim(NoModel filhoSim) {
+        this.filhoSim = filhoSim;
     }
 
-    public NoModel getNao() {
-        return nao;
+    public NoModel getFilhoNao() {
+        return filhoNao;
     }
 
-    public void setNao(NoModel nao) {
-        this.nao = nao;
+    public void setFilhoNao(NoModel filhoNao) {
+        this.filhoNao = filhoNao;
     }
 
     public String getDescricao() {
@@ -45,12 +48,12 @@ public class NoModel {
         this.descricao = descricao;
     }
 
-    public NoModel getSuperior() {
-        return superior;
+    public NoModel getPai() {
+        return pai;
     }
 
-    public void setSuperior(NoModel superior) {
-        this.superior = superior;
+    public void setPai(NoModel pai) {
+        this.pai = pai;
     }
 
 }

@@ -16,8 +16,8 @@ public class JogoController {
         NoModel sim = new NoModel("Lasanha");
         NoModel nao = new NoModel("Bolo de Chocolate");
         raiz = new NoModel(sim, nao, "massa");
-        raiz.getSim().setSuperior(raiz);
-        raiz.getNao().setSuperior(raiz);
+        raiz.getFilhoSim().setPai(raiz);
+        raiz.getFilhoNao().setPai(raiz);
     }
 
     public void iniciarJogo() {
@@ -44,9 +44,9 @@ public class JogoController {
         noAtual = no;
         
         if (perguntarPrato(no.getDescricao())) {
-            validaNoSim(no.getSim());
+            validaNoSim(no.getFilhoSim());
         } else {
-            validaNoNao(no.getNao());
+            validaNoNao(no.getFilhoNao());
         }
     }
 
@@ -55,17 +55,18 @@ public class JogoController {
         String caracteristicaPrato = caracteristicaDoNovoPrato(novoPrato, noAtual.getDescricao());
 
         NoModel novoNoSuperior = new NoModel(caracteristicaPrato);
-        novoNoSuperior.setSuperior(noAtual.getSuperior());
-        NoModel novoNoSim = new NoModel(novoPrato);
-        novoNoSuperior.setSim(novoNoSim);
+        novoNoSuperior.setPai(noAtual.getPai());
         
-        if (noAtual.getSuperior().getSim().equals(noAtual)) {
-            novoNoSuperior.getSuperior().setSim(novoNoSuperior);
+        NoModel novoNoSim = new NoModel(novoPrato);
+        novoNoSuperior.setFilhoSim(novoNoSim);
+        
+        if (noAtual.getPai().getFilhoSim().equals(noAtual)) {
+            novoNoSuperior.getPai().setFilhoSim(novoNoSuperior);
         } else {
-            novoNoSuperior.getSuperior().setNao(novoNoSuperior);
+            novoNoSuperior.getPai().setFilhoNao(novoNoSuperior);
         }
 
-        noAtual.setSuperior(novoNoSuperior);
-        novoNoSuperior.setNao(noAtual);
+        noAtual.setPai(novoNoSuperior);
+        novoNoSuperior.setFilhoNao(noAtual);
     }
 }

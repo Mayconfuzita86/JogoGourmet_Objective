@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/GameGourmet/GameGourmet.iml" filepath="$PROJECT_DIR$/GameGourmet/GameGourmet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaApplication55/JavaApplication55.iml" filepath="$PROJECT_DIR$/JavaApplication55/JavaApplication55.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JogoGourmetObjective/JogoGourmetObjective.iml" filepath="$PROJECT_DIR$/JogoGourmetObjective/JogoGourmetObjective.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/JogoGourmet_Objective.iml" filepath="$PROJECT_DIR$/.idea/JogoGourmet_Objective.iml" />
+    </modules>
+  </component>
+</project>
