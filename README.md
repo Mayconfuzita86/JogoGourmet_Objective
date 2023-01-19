@@ -3,9 +3,11 @@
  
  O jogo consiste em descobrir o nome de um prato que você pensar!
  
- Será solicitado a você pensar no nome de um prato, a cada rodada do jogo, caso ele não saiba o nome do prato que você pensou, ele irá pedir para você informar o nome deste prato e diferenciá-lo de um outro prato. 
+ Será solicitado a você pensar no nome de um prato, e o algoritmo irá tentar descobrir o nome so prato que você pensou através de dicas.
  
- Com estas informações, o jogo irá guardar estes dados e através da estrutura de dados ÁRVORE BINÁRIA serão realizadas as próximas pesquisas. 
+ A cada rodada do jogo, caso o algoritmo não descubra o nome do prato que você pensou, ele irá solicitar que você informe o nome deste prato e para que vocÊ possa diferenciá-lo de um outro prato com uma nova dica. 
+ 
+ Com estas informações, o jogo irá guardar estes dados através da estrutura de dados ÁRVORE BINÁRIA que servirá de base para as próximas pesquisas. 
  
 
 
